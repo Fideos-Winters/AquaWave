@@ -3,8 +3,63 @@
 <head>
   <meta charset="utf-8">
   <title>AquaWave</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .barra {
+      position: relative;
+      height: 20px;
+      background: #3b5278;
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-app-region: drag;
+    }
+
+    .controles {
+      position: absolute;
+      right: 5px;
+      display: flex;
+      gap: 4px;
+      -webkit-app-region: no-drag;
+    }
+
+    .controles button {
+      width: 18px;
+      height: 14px;
+      padding: 0;
+      border: 1px solid #121b2b;
+      border-radius: 4px;
+      background: #6f86ad;
+      color: white;
+      font-size: 11px;
+      line-height: 10px;
+      cursor: pointer;
+    }
+
+    #btn-cerrar {
+      background: #e8452a;
+    }
+  </style>
 </head>
 <body>
+  <div class="barra">
+    AQUAWAVE STEREO
+    <div class="controles">
+      <button id="btn-min" aria-label="Minimizar">–</button>
+      <button id="btn-cerrar" aria-label="Cerrar">×</button>
+    </div>
+  </div>
+
   <h1>Hola desde AquaWave</h1>
+
+  <script src="renderer.js"></script>
 </body>
 </html>
