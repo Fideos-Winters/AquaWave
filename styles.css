@@ -1,0 +1,198 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  user-select: none;
+  background: linear-gradient(180deg, #2a7fcb, #7dbfeb 55%, #d6edfb);
+}
+
+main {
+  padding: 12px;
+}
+
+/* ---------- PANEL METÁLICO ---------- */
+.panel {
+  border-radius: 7px;
+  border: 1px solid #2b333b;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.75) 0, rgba(255,255,255,0) 14%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 1px, rgba(0,0,0,.06) 1px 2px),
+    linear-gradient(180deg, #e4e9ed 0%, #bcc5cc 40%, #d6dce1 55%, #8e98a2 100%);
+  box-shadow:
+    0 8px 18px rgba(8,40,80,.55),
+    inset 0 1px 0 #fff,
+    inset 0 -2px 3px rgba(0,0,0,.3);
+}
+
+/* ---------- BARRA DE TÍTULO ---------- */
+.barra {
+  position: relative;
+  height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-shadow: 0 1px 1px #0a1220;
+  background: linear-gradient(180deg, #8ea4c4 0%, #4a6288 48%, #2b3c58 52%, #3b5278 100%);
+  border-bottom: 1px solid #121b2b;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+  -webkit-app-region: drag;
+}
+
+.controles {
+  position: absolute;
+  right: 5px;
+  display: flex;
+  gap: 4px;
+  -webkit-app-region: no-drag;
+}
+
+.controles button {
+  width: 18px;
+  height: 14px;
+  padding: 0;
+  border: 1px solid #121b2b;
+  border-radius: 4px;
+  color: white;
+  font-size: 11px;
+  line-height: 10px;
+  cursor: pointer;
+  background: linear-gradient(180deg, #b4c6e2, #4a6288 50%, #2b3c58 52%, #5a76a4);
+}
+
+#btn-cerrar {
+  background: linear-gradient(180deg, #ffb7a3, #e8452a 50%, #c2260f 52%, #f0674a);
+}
+
+.contenido {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- PANTALLA LCD ---------- */
+.lcd {
+  position: relative;
+  overflow: hidden;
+  width: 130px;
+  height: 66px;
+  padding: 6px 8px;
+  border-radius: 5px;
+  border: 1px solid #0a1220;
+  font-family: Consolas, 'Courier New', monospace;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at 30% 0%, #1d4f8f, #0a1f42 70%);
+  box-shadow:
+    inset 0 3px 7px rgba(0,0,0,.85),
+    0 1px 0 #fff,
+    0 0 0 3px #aeb8c1,
+    0 0 0 4px #4b555f;
+}
+
+.lcd::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 46%;
+  background: linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,.04));
+  pointer-events: none;
+}
+
+.fantasma,
+.tiempo {
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+.fantasma {
+  position: absolute;
+  color: rgba(120,190,240,.16);
+}
+
+.tiempo {
+  position: relative;
+  color: #eafaff;
+  text-shadow: 0 0 8px rgba(120,210,255,.9);
+}
+
+/* ---------- BOTONES CROMADOS ---------- */
+.transporte {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-left: 4px;
+}
+
+.cromado {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid #2b333b;
+  cursor: pointer;
+  background: radial-gradient(circle at 50% 38%, #f4f7f9 0%, #cfd6dc 55%, #9aa4ae 100%);
+  box-shadow:
+    0 0 0 2px #dfe5ea,
+    0 0 0 3px #66707a,
+    0 3px 5px rgba(0,0,0,.45),
+    inset 0 -3px 4px rgba(0,0,0,.25),
+    inset 0 2px 2px #fff;
+}
+
+.cromado:hover {
+  filter: brightness(1.06);
+}
+
+.cromado:active {
+  box-shadow:
+    0 0 0 2px #dfe5ea,
+    0 0 0 3px #66707a,
+    inset 0 3px 6px rgba(0,0,0,.5);
+}
+
+.cromado svg {
+  position: relative;
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,.9));
+}
+
+.brillo {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  top: 5%;
+  height: 44%;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,0));
+}
+
+.play {
+  width: 44px;
+  height: 44px;
+  background: radial-gradient(circle at 50% 38%, #eaffd0 0%, #9fe05a 55%, #4aa81f 100%);
+  box-shadow:
+    0 0 0 2px #dfe5ea,
+    0 0 0 3px #66707a,
+    0 0 10px 2px rgba(120,230,60,.55),
+    0 3px 5px rgba(0,0,0,.45),
+    inset 0 -3px 4px rgba(0,60,0,.35),
+    inset 0 2px 2px #fff;
+}
