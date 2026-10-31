@@ -7,6 +7,7 @@ document.querySelector('#btn-cerrar').addEventListener('click', () => {
   window.api.cerrar();
 });
 
+// ---------- Decoración (se genera con código para no repetir HTML) ----------
 
 // Tornillos y textura de metal en cada panel
 document.querySelectorAll('.panel').forEach((panel) => {

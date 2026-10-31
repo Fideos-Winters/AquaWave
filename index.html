@@ -69,3 +69,40 @@
         </div>
 
         <div class="fila centrada">
+          <span class="etiqueta">FUENTE</span>
+          <button class="btn-s led">LOCAL</button>
+          <button class="btn-s" disabled title="Próximamente">YOUTUBE</button>
+          <button class="btn-s" disabled title="Próximamente">SPOTIFY</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PANEL 2: ECUALIZADOR ========== -->
+    <section class="panel">
+      <header class="barra">ECUALIZADOR</header>
+      <div class="contenido ecualizador" id="ecualizador"></div>
+    </section>
+
+    <!-- ========== PANEL 3: LISTA ========== -->
+    <section class="panel panel-lista">
+      <header class="barra">LISTA DE REPRODUCCIÓN</header>
+
+      <div class="lista" id="lista">
+        <!-- Filas de ejemplo: las borraremos cuando la lista la genere JavaScript -->
+        <div class="pista activa"><span class="num">01.</span><span class="nombre">Nombre de la canción</span></div>
+        <div class="pista"><span class="num">02.</span><span class="nombre">Canción 02 · Artista</span></div>
+        <div class="pista"><span class="num">03.</span><span class="nombre">Canción 03 · Artista</span></div>
+      </div>
+
+      <div class="pie">
+        <button class="btn-s" id="btn-agregar">+ Agregar</button>
+        <button class="btn-s" id="btn-vaciar">Vaciar</button>
+        <span class="etiqueta contador" id="contador">3 PISTAS</span>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
