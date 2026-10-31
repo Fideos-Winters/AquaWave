@@ -8,18 +8,26 @@ body {
   overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
   user-select: none;
-  background: linear-gradient(180deg, #2a7fcb, #7dbfeb 55%, #d6edfb);
+  background:
+    radial-gradient(ellipse at 22% 12%, #fff 0%, rgba(255,255,255,0) 32%),
+    radial-gradient(ellipse at 85% 58%, rgba(255,255,255,.9) 0%, rgba(255,255,255,0) 32%),
+    linear-gradient(180deg, #2a7fcb, #7dbfeb 55%, #d6edfb);
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100vh;
   padding: 12px;
 }
 
 /* ---------- PANEL METÁLICO ---------- */
 .panel {
+  position: relative;
+  overflow: hidden;
   border-radius: 7px;
   border: 1px solid #2b333b;
-  overflow: hidden;
   background:
     linear-gradient(180deg, rgba(255,255,255,.75) 0, rgba(255,255,255,0) 14%),
     repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 1px, rgba(0,0,0,.06) 1px 2px),
@@ -27,7 +35,35 @@ main {
   box-shadow:
     0 8px 18px rgba(8,40,80,.55),
     inset 0 1px 0 #fff,
+    inset 0 0 0 1px rgba(255,255,255,.55),
     inset 0 -2px 3px rgba(0,0,0,.3);
+}
+
+.panel-lista {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.grano {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: .16;
+}
+
+.tornillo {
+  position: absolute;
+  bottom: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #b7c0c8 50%, #69737d);
+  box-shadow: 0 1px 1px rgba(0,0,0,.5), inset 0 0 0 1px rgba(0,0,0,.25);
 }
 
 /* ---------- BARRA DE TÍTULO ---------- */
@@ -42,7 +78,9 @@ main {
   font-weight: 800;
   letter-spacing: 3px;
   text-shadow: 0 1px 1px #0a1220;
-  background: linear-gradient(180deg, #8ea4c4 0%, #4a6288 48%, #2b3c58 52%, #3b5278 100%);
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 2px, rgba(0,0,0,.1) 2px 4px),
+    linear-gradient(180deg, #8ea4c4 0%, #4a6288 48%, #2b3c58 52%, #3b5278 100%);
   border-bottom: 1px solid #121b2b;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
   -webkit-app-region: drag;
@@ -73,22 +111,45 @@ main {
   background: linear-gradient(180deg, #ffb7a3, #e8452a 50%, #c2260f 52%, #f0674a);
 }
 
+/* ---------- DISTRIBUCIÓN ---------- */
 .contenido {
+  position: relative;
   padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
-/* ---------- PANTALLA LCD ---------- */
+.fila {
+  display: flex;
+  gap: 14px;
+}
+
+.centrada {
+  align-items: center;
+}
+
+.espacio {
+  flex: 1;
+}
+
+.etiqueta {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #2b3a4b;
+  text-shadow: 0 1px 0 rgba(255,255,255,.9);
+}
+
+/* ---------- PANTALLAS LCD ---------- */
 .lcd {
   position: relative;
   overflow: hidden;
-  width: 130px;
   height: 66px;
   padding: 6px 8px;
   border-radius: 5px;
   border: 1px solid #0a1220;
+  color: #c9efff;
   font-family: Consolas, 'Courier New', monospace;
   background:
     repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px),
@@ -111,6 +172,18 @@ main {
   pointer-events: none;
 }
 
+.lcd-tiempo {
+  width: 120px;
+}
+
+.lcd-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .fantasma,
 .tiempo {
   font-size: 38px;
@@ -129,14 +202,48 @@ main {
   text-shadow: 0 0 8px rgba(120,210,255,.9);
 }
 
-/* ---------- BOTONES CROMADOS ---------- */
-.transporte {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding-left: 4px;
+.sub {
+  position: absolute;
+  left: 8px;
+  bottom: 5px;
+  font-size: 10px;
+  color: #7fc4f0;
 }
 
+.titulo {
+  position: relative;
+  z-index: 1;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 6px rgba(120,210,255,.8);
+}
+
+/* ---------- ESPECTRO ---------- */
+.espectro {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.col {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.barra-esp {
+  width: 100%;
+  background: linear-gradient(180deg, #f2ff9a 0%, #7be63a 45%, #14a04a 100%);
+  -webkit-mask-image: repeating-linear-gradient(0deg, #000 0 2px, transparent 2px 3px);
+}
+
+/* ---------- BOTONES CROMADOS ---------- */
 .cromado {
   position: relative;
   overflow: hidden;
@@ -195,4 +302,156 @@ main {
     0 3px 5px rgba(0,0,0,.45),
     inset 0 -3px 4px rgba(0,60,0,.35),
     inset 0 2px 2px #fff;
+}
+
+/* ---------- BOTONES PEQUEÑOS ---------- */
+.btn-s {
+  padding: 3px 8px;
+  border: 1px solid #2b333b;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 800;
+  color: #1d2a38;
+  text-shadow: 0 1px 0 rgba(255,255,255,.9);
+  background: linear-gradient(180deg, #fff 0%, #dde3e8 48%, #b3bcc4 52%, #d0d7dd 100%);
+  box-shadow: 0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 #fff;
+}
+
+.btn-s:active {
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.4);
+}
+
+.btn-s:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.led {
+  background: linear-gradient(180deg, #f3ffd9 0%, #bff07f 48%, #7fcf3c 52%, #a8e865 100%);
+  box-shadow: 0 0 6px rgba(120,230,60,.7), inset 0 1px 0 #fff;
+}
+
+/* ---------- BARRAS DESLIZANTES (progreso y volumen) ---------- */
+.carril {
+  position: relative;
+  height: 11px;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid #2b333b;
+  cursor: pointer;
+  background: linear-gradient(180deg, #4a545e, #a7b1ba 60%, #cfd6dc);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.6), 0 1px 0 #fff;
+}
+
+.carril-vol {
+  width: 80px;
+  height: 9px;
+}
+
+.relleno {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(180deg, #d9f0ff, #5ab0f0 50%, #1f6fc0 52%, #4aa0e8);
+}
+
+/* ---------- ECUALIZADOR ---------- */
+.ecualizador {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px 18px 16px;
+}
+
+.banda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.ranura {
+  position: relative;
+  width: 7px;
+  height: 78px;
+  border-radius: 4px;
+  border: 1px solid #2b333b;
+  background: linear-gradient(90deg, #3d4852, #a7b1ba);
+  box-shadow: inset 1px 0 3px rgba(0,0,0,.7), 1px 1px 0 #fff;
+}
+
+.perilla {
+  position: absolute;
+  left: -7px;
+  width: 19px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1px solid #2b333b;
+  background: linear-gradient(180deg, #fff 0%, #dfe5ea 48%, #a9b3bc 52%, #cfd6dc 100%);
+  box-shadow: 0 2px 3px rgba(0,0,0,.55), inset 0 1px 0 #fff;
+}
+
+/* ---------- LISTA DE REPRODUCCIÓN ---------- */
+.lista {
+  flex: 1;
+  margin: 8px 8px 6px;
+  padding: 3px 0;
+  overflow-y: auto;
+  border-radius: 4px;
+  border: 1px solid #0a1220;
+  background: linear-gradient(180deg, #1a3563, #2b4f86);
+  box-shadow: inset 0 3px 7px rgba(0,0,0,.65), 0 1px 0 #fff;
+}
+
+.pista {
+  display: flex;
+  gap: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #eaf3ff;
+  cursor: pointer;
+  text-shadow: 0 1px 0 rgba(0,0,0,.5);
+}
+
+.pista .num {
+  width: 22px;
+}
+
+.pista .nombre {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pista.activa {
+  color: #06142b;
+  text-shadow: none;
+  background: linear-gradient(180deg, #d3e4ff, #86a8dc 50%, #6f93cc 52%, #9bbbe8);
+}
+
+.lista::-webkit-scrollbar {
+  width: 10px;
+}
+
+.lista::-webkit-scrollbar-track {
+  background: #10203d;
+}
+
+.lista::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  border: 1px solid #2b333b;
+  background: linear-gradient(90deg, #fff, #aeb8c1);
+}
+
+.pie {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 18px 14px;
+}
+
+.contador {
+  flex: 1;
+  text-align: right;
 }

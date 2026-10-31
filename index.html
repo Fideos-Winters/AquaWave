@@ -6,7 +6,17 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Filtro de ruido para la textura de metal (no se ve, solo se define) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="grano">
+      <feTurbulence type="fractalNoise" baseFrequency=".9 .04" numOctaves="2" seed="4"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </svg>
+
   <main>
+
+    <!-- ========== PANEL 1: REPRODUCTOR ========== -->
     <section class="panel">
       <header class="barra">
         AQUAWAVE STEREO
@@ -17,40 +27,45 @@
       </header>
 
       <div class="contenido">
-        <div class="lcd">
-            
-          <div class="fantasma">88:88</div>
-          <div class="tiempo">00:00</div>
+        <div class="fila">
+          <div class="lcd lcd-tiempo">
+            <div class="fantasma">88:88</div>
+            <div class="tiempo" id="tiempo">00:00</div>
+            <div class="sub">STEREO</div>
+          </div>
+          <div class="lcd lcd-info">
+            <div class="titulo" id="titulo">Agrega música para empezar</div>
+            <div class="espectro" id="espectro"></div>
+          </div>
         </div>
-        <div class="transporte">
-  <button class="cromado" id="btn-anterior" aria-label="Anterior">
-    <span class="brillo"></span>
-    <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 2v10M12 2L5 7l7 5z" fill="#26323f"/></svg>
-  </button>
 
-  <button class="cromado play" id="btn-play" aria-label="Reproducir o pausar">
-    <span class="brillo"></span>
-    <svg id="icono-play" width="14" height="14" viewBox="0 0 14 14"><path d="M3 1l10 6-10 6z" fill="#0f5a12"/></svg>
-  </button>
+        <div class="carril" id="barra-progreso">
+          <div class="relleno" id="relleno-progreso"></div>
+        </div>
 
-  <button class="cromado" id="btn-stop" aria-label="Detener">
-    <span class="brillo"></span>
-    <svg width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" fill="#26323f"/></svg>
-  </button>
+        <div class="fila centrada">
+          <button class="cromado" id="btn-anterior" aria-label="Anterior">
+            <span class="brillo"></span>
+            <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 2v10M12 2L5 7l7 5z" fill="#26323f"/></svg>
+          </button>
+          <button class="cromado play" id="btn-play" aria-label="Reproducir o pausar">
+            <span class="brillo"></span>
+            <svg id="icono-play" width="14" height="14" viewBox="0 0 14 14"><path d="M3 1l10 6-10 6z" fill="#0f5a12"/></svg>
+          </button>
+          <button class="cromado" id="btn-stop" aria-label="Detener">
+            <span class="brillo"></span>
+            <svg width="14" height="14" viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" fill="#26323f"/></svg>
+          </button>
+          <button class="cromado" id="btn-siguiente" aria-label="Siguiente">
+            <span class="brillo"></span>
+            <svg width="14" height="14" viewBox="0 0 14 14"><path d="M11 2v10M2 2l7 5-7 5z" fill="#26323f"/></svg>
+          </button>
 
-  <button class="cromado" id="btn-siguiente" aria-label="Siguiente">
-    <span class="brillo"></span>
-    <svg width="14" height="14" viewBox="0 0 14 14"><path d="M11 2v10M2 2l7 5-7 5z" fill="#26323f"/></svg>
-  </button>
-</div>
-        
-      </div>
-      
-    </section>
+          <span class="espacio"></span>
+          <span class="etiqueta">VOL</span>
+          <div class="carril carril-vol" id="barra-volumen">
+            <div class="relleno" id="relleno-volumen" style="width: 70%"></div>
+          </div>
+        </div>
 
-    
-  </main>
-
-  <script src="renderer.js"></script>
-</body>
-</html>
+        <div class="fila centrada">
